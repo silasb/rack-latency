@@ -5,7 +5,9 @@ require "rack/latency/rack_latency_railtie"
 
 module Rack
   module Latency
-    mattr_accessor :delay_initial_start
+    class << self
+      attr_accessor :delay_initial_start
+    end
 
     def self.configure(&block)
       @delay_initial_start = 30
