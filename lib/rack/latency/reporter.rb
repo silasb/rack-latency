@@ -24,8 +24,13 @@ module Rack
       private
 
       def start(interval)
-        @logger.info "-> rack-latency starting in interval mode (#{interval}s)"
-        Thread.new { report(interval) }
+        startup_delay = Rack::Latency.delay_initial_start
+
+        @logger.info "-> rack-latency starting in interval mode (#{interval}s) (starting in #{startup_delay}s)"
+        Thread.new {
+          sleep(startup_delay)
+          report(interval)
+        }
       end
 
       def report(interval)
