@@ -1,4 +1,3 @@
-require 'pry'
 module Rack
   module Latency
     class RackLatencyRailtie < Rails::Railtie
